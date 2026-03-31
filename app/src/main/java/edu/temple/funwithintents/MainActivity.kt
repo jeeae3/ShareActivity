@@ -17,16 +17,17 @@ class  MainActivity : AppCompatActivity() {
         // When the user clicks this button, share the text if not empty
         findViewById<ImageButton>(R.id.shareImageButton).setOnClickListener {
             val message  = getString(R.string.lorem_ipsum)
-            if (message !=null){
-                val sendIntent: Intent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    // The string you want to share
-                    putExtra(Intent.EXTRA_TEXT, message)
-                    type = "text/plain"
-                }
-                val shareIntent = Intent.createChooser(sendIntent, null)
-                startActivity(shareIntent)
+            val userText = editText.text.toString()
+
+
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                // The string you want to share
+                putExtra(Intent.EXTRA_TEXT, userText)
+                type = "text/plain"
             }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
 
         }
     }
